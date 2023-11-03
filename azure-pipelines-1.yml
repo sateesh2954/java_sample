@@ -54,7 +54,7 @@ stages:
     displayName: Deploy Linux Web App
     environment: $(environmentName)
     pool:
-      vmImage: $(vmImageName)
+      name: MyUbuntuAgentPool
     strategy:
       runOnce:
         deploy:
