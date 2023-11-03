@@ -12,7 +12,7 @@ stages:
     pool:
      name: 'MyUbuntuAgentPool'
     jobs:
-      - job: build
+      - job: Build
         steps:
           - task: SonarQubePrepare@5
             inputs:
@@ -30,17 +30,6 @@ stages:
               publishJUnitResults: true
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               goals: 'package'
-          - task: Maven@4
-            inputs:
-              mavenPomFile: 'pom.xml'
-              goals: 'deploy'
-              publishJUnitResults: true
-              testResultsFiles: '**/surefire-reports/TEST-*.xml'
-              javaHomeOption: 'JDKVersion'
-              mavenVersionOption: 'Default'
-              mavenAuthenticateFeed: false
-              effectivePomSkip: false
-              sonarQubeRunAnalysis: false
           - task: CopyFiles@2
             inputs:
               Contents: '**'
@@ -53,4 +42,74 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-  
+
+- stage: dev
+    displayName: deploy to the develop environment
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: Deploy
+        pool:
+         name: 'MyUbuntuAgentPool'
+        environment: dev
+        variables:
+          - group: release
+        strategy:
+         runOnce:
+            deploy:
+               steps:
+                 - download: current
+                   artifact: drop
+                 - task: AzureWebApp@1
+                   inputs:
+                     azureSubscription: 'ARM-SC'
+                     appType: 'webAppLinux'
+                     appName: 'test-app-dev'
+                     package: '$(System.DefaultWorkingDirectory)/**/*.jar'
+  - stage: QA
+    displayName: deploy to the QA environment
+    dependsOn: dev
+    condition: succeeded()
+    jobs:
+      - deployment: Deploy
+        pool:
+         name: 'MyUbuntuAgentPool'
+        environment: QA
+        variables:
+          - group: release
+        strategy:
+         runOnce:
+            deploy:
+               steps:
+                 - download: current
+                   artifact: drop
+                 - task: AzureWebApp@1
+                   inputs:
+                     azureSubscription: 'ARM-SC'
+                     appType: 'webAppLinux'
+                     appName: 'test-app-qa'
+                     package: '$(System.DefaultWorkingDirectory)/**/*.jar'
+  - stage: staging
+    displayName: deploy to the staging
+    dependsOn: QA
+    condition: succeeded()
+    jobs:
+      - deployment: Deploy
+        pool:
+         name: 'MyUbuntuAgentPool'
+        environment: staging
+        variables: 
+          - group: release
+        strategy:
+         runOnce:
+            deploy:
+               steps:
+                 - download: current
+                   artifact: drop
+                 - task: AzureWebApp@1
+                   inputs:
+                     azureSubscription: 'ARM-SC'
+                     appType: 'webAppLinux'
+                     appName: 'test-app-stage'
+                     package: '$(System.DefaultWorkingDirectory)/**/*.jar'  
+                  
