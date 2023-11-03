@@ -19,11 +19,7 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'sonarqube'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'Sattest'
-    cliProjectName: 'Sateesh-Yaml'
-    cliSources: '.'
+    scannerMode: 'Other'
     extraProperties: |
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
