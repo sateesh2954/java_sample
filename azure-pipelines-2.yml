@@ -44,28 +44,28 @@ stages:
               publishLocation: 'Container'
 
   - stage: dev
-      displayName: deploy to the develop environment
-      dependsOn: Build
-      condition: succeeded()
-      jobs:
-        - deployment: Deploy
-          pool:
-          name: 'MyUbuntuAgentPool'
-          environment: dev
-          variables:
-            - group: release
-          strategy:
-          runOnce:
-              deploy:
-                steps:
-                  - download: current
-                    artifact: drop
-                  - task: AzureWebApp@1
-                    inputs:
-                      azureSubscription: 'ARM-SC'
-                      appType: 'webAppLinux'
-                      appName: 'test-app-dev'
-                      package: '$(System.DefaultWorkingDirectory)/**/*.jar'
+    displayName: deploy to the develop environment
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: Deploy
+        pool:
+        name: 'MyUbuntuAgentPool'
+        environment: dev
+        variables:
+          - group: release
+        strategy:
+        runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+                - task: AzureWebApp@1
+                  inputs:
+                    azureSubscription: 'ARM-SC'
+                    appType: 'webAppLinux'
+                    appName: 'test-app-dev'
+                    package: '$(System.DefaultWorkingDirectory)/**/*.jar'
   - stage: QA
     displayName: deploy to the QA environment
     dependsOn: dev
