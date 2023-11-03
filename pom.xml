@@ -42,7 +42,12 @@
       </plugin>
     </plugins>
   </build>
-
+  <distributionManagement>
+    <repository>
+      <id>java_sample</id>
+      <url>https://github.com/sateesh2954/java_sample</url>
+    </repository>
+  </distributionManagement>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
