@@ -34,8 +34,7 @@ stages:
       inputs:
         SonarQube: 'sonarqube'
         scannerMode: 'Other'
-        sonar.projectKey=test
-        sonar.projectName=test-sateesh
+         projectKey: test
         
 - stage: Build
   displayName: Build stage
