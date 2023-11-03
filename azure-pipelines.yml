@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool: MyBuildAgent
+pool: MyUbuntuAgentPool
 
 steps:
 - task: Maven@3
