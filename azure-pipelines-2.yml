@@ -50,12 +50,12 @@ stages:
     jobs:
       - deployment: Deploy
         pool:
-        name: 'MyUbuntuAgentPool'
+         name: 'MyUbuntuAgentPool'
         environment: dev
         variables:
           - group: release
         strategy:
-        runOnce:
+         runOnce:
             deploy:
               steps:
                 - download: current
