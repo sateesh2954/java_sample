@@ -7,7 +7,7 @@
 trigger:
 - master
 stages:
-  - stage: build
+  - stage: Build
     displayName: Build Application
     pool:
      name: 'MyUbuntuAgentPool'
@@ -43,7 +43,7 @@ stages:
               ArtifactName: 'drop'
               publishLocation: 'Container'
 
-- stage: dev
+- stages: dev
     displayName: deploy to the develop environment
     dependsOn: Build
     condition: succeeded()
@@ -66,7 +66,7 @@ stages:
                      appType: 'webAppLinux'
                      appName: 'test-app-dev'
                      package: '$(System.DefaultWorkingDirectory)/**/*.jar'
-  - stage: QA
+  - stages: QA
     displayName: deploy to the QA environment
     dependsOn: dev
     condition: succeeded()
@@ -89,7 +89,7 @@ stages:
                      appType: 'webAppLinux'
                      appName: 'test-app-qa'
                      package: '$(System.DefaultWorkingDirectory)/**/*.jar'
-  - stage: staging
+  - stages: staging
     displayName: deploy to the staging
     dependsOn: QA
     condition: succeeded()
