@@ -89,7 +89,7 @@ stages:
                      appType: 'webAppLinux'
                      appName: 'test-app-qa'
                      package: '$(System.DefaultWorkingDirectory)/**/*.jar'
-  - stages: staging
+  - stage: staging
     displayName: deploy to the staging
     dependsOn: QA
     condition: succeeded()
