@@ -34,11 +34,10 @@ stages:
       inputs:
         SonarQube: 'sonarqube'
         scannerMode: 'Other'
-        extraProperties: |
-                # Additional properties that will be passed to the scanner,
-                # Put one key=value per line, example:
-                # sonar.exclusions=**/*.bin
-                sonar.projectKey=test
+        extraProperties: 'sonar.projectKey=test'
+    - task: SonarQubePublish@5
+      inputs:
+        pollingTimeoutSec: '300'
         
 - stage: Build
   displayName: Build stage
