@@ -62,7 +62,8 @@ stages:
                   artifact: drop
                 - task: AzureWebApp@1
                   inputs:
-                    azureSubscription: 'ARM-SC'
+                    ConnectionType: 'AzureRM'
+                    azureSubscription: 'Free Trial (82fe0a7d-d99b-4167-a66d-d61381b992b9)'
                     appType: 'webAppLinux'
                     appName: 'test-app-dev'
                     package: '$(System.DefaultWorkingDirectory)/**/*.jar'
@@ -85,7 +86,8 @@ stages:
                    artifact: drop
                  - task: AzureWebApp@1
                    inputs:
-                     azureSubscription: 'ARM-SC'
+                     ConnectionType: 'AzureRM'
+                     azureSubscription: 'Free Trial (82fe0a7d-d99b-4167-a66d-d61381b992b9)'
                      appType: 'webAppLinux'
                      appName: 'test-app-qa'
                      package: '$(System.DefaultWorkingDirectory)/**/*.jar'
@@ -108,8 +110,10 @@ stages:
                    artifact: drop
                  - task: AzureWebApp@1
                    inputs:
-                     azureSubscription: 'ARM-SC'
+                     ConnectionType: 'AzureRM'
+                     azureSubscription: 'Free Trial (82fe0a7d-d99b-4167-a66d-d61381b992b9)'
                      appType: 'webAppLinux'
                      appName: 'test-app-stage'
                      package: '$(System.DefaultWorkingDirectory)/**/*.jar'  
+
                   
