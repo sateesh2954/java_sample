@@ -21,6 +21,20 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
+- stage: Analysis
+  displayName: Code Analysis stage
+  jobs:
+  - job: SonarQubeScan
+    displayName: Code Scan
+    pool:
+     name: MyUbuntuAgentPool
+
+    steps:
+    - task: SonarQubePrepare@5
+      inputs:
+        SonarQube: 'sonarqube'
+        scannerMode: 'Other'
+        
 - stage: Build
   displayName: Build stage
   jobs:
@@ -30,9 +44,6 @@ stages:
      name: MyUbuntuAgentPool
 
     steps:
-    - task: SonarQubeAnalyze@5
-      inputs:
-        jdkversion: 'JAVA_HOME_11_X64'
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
