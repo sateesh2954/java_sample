@@ -24,7 +24,6 @@ stages:
               mavenVersionOption: 'Default'
               mavenAuthenticateFeed: false
               effectivePomSkip: false
-              sonarQubeRunAnalysis: true
           - task: CopyFiles@2
             inputs:
               Contents: '**'
