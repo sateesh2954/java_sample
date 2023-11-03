@@ -29,6 +29,7 @@ steps:
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.java.binaries=.
+      sonar.branch.name=main
 - task: SonarQubeAnalyze@5
 - task: SonarQubePublish@5
   inputs:
