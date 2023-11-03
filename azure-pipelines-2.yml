@@ -52,8 +52,6 @@ stages:
         pool:
          name: 'MyUbuntuAgentPool'
         environment: dev
-        variables:
-          - group: release
         strategy:
          runOnce:
             deploy:
@@ -75,8 +73,6 @@ stages:
         pool:
          name: 'MyUbuntuAgentPool'
         environment: QA
-        variables:
-          - group: release
         strategy:
          runOnce:
             deploy:
@@ -98,8 +94,6 @@ stages:
         pool:
          name: 'MyUbuntuAgentPool'
         environment: staging
-        variables: 
-          - group: release
         strategy:
          runOnce:
             deploy:
