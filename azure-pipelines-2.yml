@@ -23,10 +23,6 @@ stages:
                 # Put one key=value per line, example:
                 # sonar.exclusions=**/*.bin
                 sonar.projectKey=sat_test
-          - task: Maven@3
-            displayName: 'Maven Package'
-            inputs:
-              mavenPomFile: 'pom.xml'
           - task: Maven@4
             inputs:
               mavenPomFile: 'pom.xml'
