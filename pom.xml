@@ -7,17 +7,29 @@
   <version>1.0-SNAPSHOT</version>
   <name>Hello world sample web app</name>
   <url>http://maven.apache.org</url>
+<repositories>
+<repository>
+  <id>Teamfeed</id>
+  <url>https://pkgs.dev.azure.com/test-sateesh/test-project/_packaging/Teamfeed/maven/v1</url>
+  <releases>
+    <enabled>true</enabled>
+  </releases>
+  <snapshots>
+    <enabled>true</enabled>
+  </snapshots>
+</repository>
+</repositories>
 <distributionManagement>
 <repository>
-     <id>test-sateesh</id>
-     <url>https://pkgs.dev.azure.com/test-sateesh/_packaging/test-sateesh/maven/v1</url>
-     <releases>
-     <enabled>true</enabled>
-     </releases>
-     <snapshots>
-     <enabled>true</enabled>
-    </snapshots>
-    </repository>
+  <id>Teamfeed</id>
+  <url>https://pkgs.dev.azure.com/test-sateesh/test-project/_packaging/Teamfeed/maven/v1</url>
+  <releases>
+    <enabled>true</enabled>
+  </releases>
+  <snapshots>
+    <enabled>true</enabled>
+  </snapshots>
+</repository>
   </distributionManagement>  
   <dependencies>
     <dependency>
