@@ -23,17 +23,7 @@ stages:
                 # Put one key=value per line, example:
                 # sonar.exclusions=**/*.bin
                 sonar.projectKey=sat_test
-          - task: Maven@4
-            inputs:
-              mavenPomFile: 'pom.xml'
-              goals: 'install'
-              publishJUnitResults: true
-              testResultsFiles: '**/surefire-reports/TEST-*.xml'
-              javaHomeOption: 'JDKVersion'
-              mavenVersionOption: 'Default'
-              mavenAuthenticateFeed: false
-              effectivePomSkip: false
-              sonarQubeRunAnalysis: false
+
           - task: Maven@4
             inputs:
               mavenPomFile: 'pom.xml'
