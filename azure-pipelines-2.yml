@@ -14,17 +14,6 @@ stages:
     jobs:
       - job: Build
         steps:
-          - task: SonarQubePrepare@5
-            inputs:
-              SonarQube: 'sonarqube'
-              scannerMode: 'Other'
-              extraProperties: |
-                # Additional properties that will be passed to the scanner,
-                # Put one key=value per line, example:
-                # sonar.exclusions=**/*.bin
-                sonar.projectKey=sat_test
-                sonar.projectName=sattest
-
           - task: Maven@4
             inputs:
               mavenPomFile: 'pom.xml'
@@ -35,6 +24,16 @@ stages:
               effectivePomSkip: false
               sonarQubeRunAnalysis: true
               sqMavenPluginVersionChoice: 'pom'
+          - task: SonarQubePrepare@5
+            inputs:
+              SonarQube: 'sonarqube'
+              scannerMode: 'Other'
+              extraProperties: |
+                # Additional properties that will be passed to the scanner,
+                # Put one key=value per line, example:
+                # sonar.exclusions=**/*.bin
+                sonar.projectKey=sat_test
+                sonar.projectName=sattest
 
           - task: CopyFiles@2
             displayName: 'Copy Files to artifact staging directory'
