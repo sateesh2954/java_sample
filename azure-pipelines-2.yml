@@ -22,6 +22,10 @@ stages:
               mavenAuthenticateFeed: false
               effectivePomSkip: false
               sonarQubeRunAnalysis: false
+          - task: Maven@3
+            displayName: 'Maven pom.xml'
+            inputs:
+              goals: 'clean install sonar:sonar'
           - task: SonarQubePrepare@5
             inputs:
               SonarQube: 'sonarqube'
