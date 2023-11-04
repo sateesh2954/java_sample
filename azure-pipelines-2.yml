@@ -19,11 +19,9 @@ stages:
               mavenPomFile: 'pom.xml'
               publishJUnitResults: true
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
-              mavenVersionOption: 'Default'
               mavenAuthenticateFeed: false
               effectivePomSkip: false
               sonarQubeRunAnalysis: true
-              sqMavenPluginVersionChoice: 'pom'
           - task: SonarQubePrepare@5
             inputs:
               SonarQube: 'sonarqube'
