@@ -25,14 +25,13 @@ stages:
           - task: SonarQubePrepare@5
             inputs:
               SonarQube: 'sonarqube'
-              scannerMode: 'CLI'
-              configMode: 'manual'
-              cliProjectKey: 'sattest'
-              cliProjectName: 'sattest'
-              cliSources: '.'
-          - task: SonarQubeAnalyze@5
-            inputs:
-              jdkversion: 'JAVA_HOME_11_X64'
+              scannerMode: 'Other'
+              extraProperties: |
+                # Additional properties that will be passed to the scanner, 
+                # Put one key=value per line, example:
+                # sonar.exclusions=**/*.bin
+                sonar.projectKey=sat_test
+                sonar.projectName=sattest
           - task: SonarQubePublish@5
             inputs:
               pollingTimeoutSec: '300'
