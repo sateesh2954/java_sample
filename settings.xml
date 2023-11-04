@@ -1,5 +1,9 @@
-    <server>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
+   <server>
       <id>test-sateesh</id>
       <username>test-sateesh</username>
-      <password>fzpfyx7htv6m7awohdrpyogljpza4j3j7h6hekdx47pm4ia5odja</password>
+      <password>[PERSONAL_ACCESS_TOKEN]</password>
     </server>
